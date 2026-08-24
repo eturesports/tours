@@ -661,6 +661,46 @@ ul.dash li b { font-weight:600; color:var(--w); }
 .lt .logo-word, .logo-word.on-lt { color:var(--dk); }
 .lt .logo-word b, .logo-word.on-lt b { color:var(--red); }
 
+/* ---------- Previous-experiences collage ----------
+   Sixteen frames, two per tour: each pair is a wide tile followed by a square
+   one, so every row of the six-column grid reads 2+1+2+1 and packs exactly. */
+.collage { display:grid; grid-template-columns:repeat(6,1fr); grid-auto-rows:1fr;
+  gap:clamp(4px,.55vw,8px); flex:1; min-height:0; }
+.collage figure { position:relative; margin:0; overflow:hidden; border-radius:10px;
+  background:var(--dk2); }
+.collage figure.wide { grid-column:span 2; }
+.collage img { width:100%; height:100%; object-fit:cover; display:block;
+  transition:transform .6s cubic-bezier(.2,.6,.3,1); }
+.collage figure:hover img { transform:scale(1.06); }
+.collage figcaption { position:absolute; left:0; right:0; bottom:0; padding:.5rem .6rem;
+  font-family:'Barlow Condensed'; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  font-size:clamp(9px,.8vw,11px); color:#fff;
+  background:linear-gradient(to top,rgba(8,7,6,.9),rgba(8,7,6,0)); }
+/* Phones: two even columns, so each tour's pair sits side by side instead of a
+   full-width tile leaving half a row empty underneath it. */
+@media (max-width:860px){
+  .collage { grid-template-columns:repeat(2,1fr); grid-auto-rows:minmax(120px,19vh);
+    flex:none; min-height:auto; }
+  .collage figure.wide { grid-column:auto; }
+}
+
+/* ---------- Friendly opponents ---------- */
+.opp-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:clamp(9px,1.2vw,16px);
+  margin-top:clamp(16px,2.4vh,30px); }
+.opp { display:flex; flex-direction:column; justify-content:center; gap:.3rem;
+  min-height:clamp(84px,11vh,116px); padding:clamp(12px,1.5vw,20px);
+  background:#fff; border:1px solid rgba(0,0,0,.09); border-radius:12px;
+  box-shadow:0 10px 26px rgba(20,15,10,.09);
+  transition:transform .35s, box-shadow .35s, border-color .35s; }
+.opp:hover { transform:translateY(-4px); border-color:rgba(155,26,26,.45);
+  box-shadow:0 18px 38px rgba(20,15,10,.16); }
+.opp-name { font-family:var(--disp); font-weight:900; text-transform:uppercase; line-height:1;
+  font-size:clamp(14px,1.5vw,21px); color:var(--dk); }
+.opp:hover .opp-name { color:var(--red); }
+.opp-note { font-family:'Barlow Condensed'; font-weight:600; letter-spacing:.13em;
+  text-transform:uppercase; font-size:clamp(8.5px,.72vw,10px); color:var(--g2); }
+@media (max-width:860px){ .opp-grid { grid-template-columns:repeat(2,1fr); } }
+
 /* ---------- Sample itinerary ---------- */
 /* Nine rows share whatever height the slide has left, so they must be allowed
    to shrink — plain 1fr floors each row at its content height and overflows. */
@@ -825,14 +865,35 @@ ul.dash li b { font-weight:600; color:var(--w); }
   <div class="pad has-rail" style="height:100%;display:flex;flex-direction:column;">
     <p class="kick">Previous Experiences</p>
     <h2 class="h-display" style="font-size:clamp(24px,3.4vw,46px);margin-bottom:.5rem;">Immersion &middot; History <span class="rd">&middot; Tradition</span></h2>
-    <div class="car-outer" style="position:relative;flex:1;min-height:0;overflow:hidden;cursor:grab;border-radius:12px;">
-      <div class="car-track" data-photos="GALLERY" style="display:flex;height:100%;gap:4px;will-change:transform;"></div>
-    </div>
+    <p class="body small" style="color:rgba(255,255,255,.65);margin-bottom:.7rem;">Two frames from every team we have hosted in Spain.</p>
+    <div class="collage" id="collage"></div>
   </div>
 </section>
 
 <!-- 05..12 · ONE SLIDE PER TOUR — injected by buildTourSlides() -->
 <div id="tourSlideAnchor" hidden></div>
+
+<!-- 14 · SAMPLE ITINERARY -->
+<section class="slide" data-name="Sample Itinerary" style="background:var(--dk2);">
+  <div class="rail"><span>Sample Itinerary</span></div>
+  <div class="pad has-rail" style="height:100%;display:flex;flex-direction:column;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:clamp(16px,2.4vw,40px);flex-wrap:wrap;">
+      <div>
+        <p class="kick">Sample Itinerary</p>
+        <h2 class="h-display" style="font-size:clamp(24px,3.4vw,46px);margin-bottom:.15rem;">Nine Days <span class="rd">on Tour</span></h2>
+        <p class="body small" style="color:rgba(255,255,255,.7);max-width:720px;">Barcelona &rarr; Pe&ntilde;&iacute;scola &rarr; Valencia. A model route &mdash; yours is built around your dates, your squad and your objectives.</p>
+      </div>
+      <div id="itinStats" style="display:flex;gap:clamp(13px,2vw,32px);flex-wrap:wrap;margin-bottom:.35rem;"></div>
+    </div>
+    <div class="itin-head" style="margin-top:clamp(10px,1.6vh,20px);">
+      <span class="lbl" style="color:var(--g2);">Day</span>
+      <span class="lbl" style="color:var(--g2);">Morning</span>
+      <span class="lbl" style="color:var(--g2);">Afternoon / Evening</span>
+    </div>
+    <div class="itin" id="itinGrid"></div>
+    <p class="body small" style="margin-top:clamp(8px,1.3vh,15px);color:rgba(255,255,255,.5);font-style:italic;">Sample only &mdash; match days, training load and cultural visits are agreed with your staff before travel. LaLiga fixtures are subject to the league calendar.</p>
+  </div>
+</section>
 
 <!-- 13 · FOOTBALL PROGRAM -->
 <section class="slide" data-name="Football Program" style="background:var(--dk2);">
@@ -863,17 +924,14 @@ ul.dash li b { font-weight:600; color:var(--w); }
 </section>
 
 <!-- 14 · POSSIBLE FRIENDLY GAMES -->
-<section class="slide lt" data-name="Possible Friendly Games" style="background:var(--ow);">
-  <div class="rail lt"><span>Possible Friendly Games</span></div>
-  <div class="pad has-rail" style="height:100%;display:flex;flex-direction:column;">
+<section class="slide lt" data-name="Friendly Opponents" style="background:var(--ow);">
+  <div class="rail lt"><span>Friendly Opponents</span></div>
+  <div class="pad has-rail" style="height:100%;display:flex;flex-direction:column;justify-content:center;">
     <p class="kick dkk">On Tour</p>
-    <h2 class="h-display on-lt" style="font-size:clamp(24px,3.4vw,46px);margin-bottom:.2rem;">Possible Friendly <span class="rd">Games</span></h2>
-    <p class="body lt2 small">Once the tour is confirmed, ETURE organises the fixtures. A sample of the clubs we work with regularly.</p>
-    <div class="g3" style="flex:1;min-height:0;align-items:center;margin:.6rem auto 0;max-width:900px;width:100%;">
-      <div style="text-align:center;"><img src="Escudos/vinaros.png" alt="Vinaròs CF" style="height:clamp(90px,14vh,160px);width:auto;object-fit:contain;"><p class="lbl" style="color:var(--g3);margin-top:.7rem;">Vinar&ograve;s CF</p></div>
-      <div style="text-align:center;"><img src="Escudos/torrent.png" alt="Torrent CF" style="height:clamp(90px,14vh,160px);width:auto;object-fit:contain;"><p class="lbl" style="color:var(--g3);margin-top:.7rem;">Torrent CF</p></div>
-      <div style="text-align:center;"><img src="Escudos/castellon.png" alt="CD Castellón" style="height:clamp(90px,14vh,160px);width:auto;object-fit:contain;"><p class="lbl" style="color:var(--g3);margin-top:.7rem;">CD Castell&oacute;n</p></div>
-    </div>
+    <h2 class="h-display on-lt" style="font-size:clamp(24px,3.4vw,46px);margin-bottom:.2rem;">Friendly <span class="rd">Opponents</span></h2>
+    <p class="body lt2 small" style="max-width:880px;">Clubs ETURE has organised friendly matches against. Opposition is matched to your squad&rsquo;s
+    age group and standard, and confirmed once the tour is booked.</p>
+    <div class="opp-grid" id="oppGrid"></div>
   </div>
 </section>
 
@@ -1045,28 +1103,6 @@ ul.dash li b { font-weight:600; color:var(--w); }
         <p class="body lt2 small">Exposure-led. Sessions and matches recorded with VEO, individual footage delivered, and Spanish club staff invited to attend.</p>
         <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:.7rem;"><span class="chip">Veo footage</span><span class="chip">Scouts invited</span></div></div>
     </div>
-  </div>
-</section>
-
-<!-- 21 · SAMPLE ITINERARY -->
-<section class="slide" data-name="Sample Itinerary" style="background:var(--dk2);">
-  <div class="rail"><span>Sample Itinerary</span></div>
-  <div class="pad has-rail" style="height:100%;display:flex;flex-direction:column;">
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:clamp(16px,2.4vw,40px);flex-wrap:wrap;">
-      <div>
-        <p class="kick">Sample Itinerary</p>
-        <h2 class="h-display" style="font-size:clamp(24px,3.4vw,46px);margin-bottom:.15rem;">Nine Days <span class="rd">on Tour</span></h2>
-        <p class="body small" style="color:rgba(255,255,255,.7);max-width:720px;">Barcelona &rarr; Pe&ntilde;&iacute;scola &rarr; Valencia. A model route &mdash; yours is built around your dates, your squad and your objectives.</p>
-      </div>
-      <div id="itinStats" style="display:flex;gap:clamp(13px,2vw,32px);flex-wrap:wrap;margin-bottom:.35rem;"></div>
-    </div>
-    <div class="itin-head" style="margin-top:clamp(10px,1.6vh,20px);">
-      <span class="lbl" style="color:var(--g2);">Day</span>
-      <span class="lbl" style="color:var(--g2);">Morning</span>
-      <span class="lbl" style="color:var(--g2);">Afternoon / Evening</span>
-    </div>
-    <div class="itin" id="itinGrid"></div>
-    <p class="body small" style="margin-top:clamp(8px,1.3vh,15px);color:rgba(255,255,255,.5);font-style:italic;">Sample only &mdash; match days, training load and cultural visits are agreed with your staff before travel. LaLiga fixtures are subject to the league calendar.</p>
   </div>
 </section>
 
@@ -1285,16 +1321,19 @@ const ITINERARY = [
   {day:9, tag:'Departure', am:'Logistics &amp; airport transfer',
                            pm:'Departure flights back home'},
 ];
-const GALLERY = [
-  'Fotos/53736300418_3ff6e692aa_6k.jpg','Fotos/53736301743_ff75b4fe35_6k.jpg',
-  'Fotos/clemsonwsoccer_1715885910_3369417691313272920_1393573021.jpg',
-  'Fotos/clemsonwsoccer_1716151232_3371643371335316874_1393573021.jpg',
-  'Fotos/clemsonwsoccer_1716151232_3371643371343657461_1393573021.jpg',
-  'Fotos/clemsonwsoccer_1716332156_3373161071655466251_1393573021.jpg',
-  'Fotos/clemsonwsoccer_1716332156_3373161071663700113_1393573021.jpg',
-  'Fotos/clemsonwsoccer_1716413406_3373842643287899200_1393573021.jpg',
-  'Fotos/clemsonwsoccer_1716670850_3376002244020072916_1393573021.jpg',
-  'Fotos/_vsFCBarca_051524_-60.jpg','Fotos/sagrada.jpg',
+/* Clubs ETURE has arranged friendly matches against. Names only — add a crest
+   file per club here once the full set exists, so the grid stays consistent. */
+const OPPONENTS = [
+  {name:'Real Madrid',   note:'Madrid'},
+  {name:'FC Barcelona',  note:'Barcelona'},
+  {name:'Villarreal CF', note:'Castell&oacute;n'},
+  {name:'Levante UD',    note:'Valencia'},
+  {name:'Elche CF',      note:'Alicante'},
+  {name:'CD Castell&oacute;n', note:'Castell&oacute;n'},
+  {name:'Torrent CF',    note:'Valencia'},
+  {name:'UD Alzira',     note:'Valencia'},
+  {name:'Vinar&ograve;s CF', note:'Castell&oacute;n'},
+  {name:'Cracks',        note:'Academy'},
 ];
 
 /* ── TOUR SLIDES ─────────────────────────────────────
@@ -1332,6 +1371,28 @@ const GALLERY = [
     frag.appendChild(s);
   });
   anchor.replaceWith(frag);
+})();
+
+/* ── PREVIOUS-EXPERIENCES COLLAGE ───────────────────── */
+(function(){
+  const g = document.getElementById('collage'); if(!g) return;
+  g.innerHTML = TOURS.flatMap(t => {
+    /* First frame and one from the middle, so the pair is not two near-identical
+       shots from the same moment of the tour. */
+    const picks = [t.photos[0], t.photos[Math.floor(t.photos.length/2)]];
+    return picks.map((src,i) => `
+      <figure class="${i===0?'wide':''}">
+        <img loading="lazy" src="${src}" alt="${t.name} on tour in Spain">
+        ${i===0?`<figcaption>${t.name}</figcaption>`:''}
+      </figure>`);
+  }).join('');
+})();
+
+/* ── FRIENDLY OPPONENTS ─────────────────────────────── */
+(function(){
+  const g = document.getElementById('oppGrid'); if(!g) return;
+  g.innerHTML = OPPONENTS.map(o => `
+    <div class="opp"><p class="opp-name">${o.name}</p><span class="opp-note">${o.note}</span></div>`).join('');
 })();
 
 /* ── CLIENT GRID ────────────────────────────────────── */
@@ -1525,8 +1586,8 @@ document.addEventListener('mouseup',e=>{ if(!mDragging)return; mDragging=false; 
   document.addEventListener('mouseup',()=>c.classList.remove('pressed'));
 })();
 
-/* ── GALLERY CAROUSELS ──────────────────────────────
-   Nine galleries share this page, so a track only mounts its images once its
+/* ── TOUR GALLERY CAROUSELS ─────────────────────────
+   Eight galleries share this page, so a track only mounts its images once its
    slide comes inside the navigation window (see updateFar). */
 function ensureCarousel(track){
   if(track.dataset.built) return;
@@ -1561,8 +1622,6 @@ function ensureCarousel(track){
     x=-setW; tick();
   }));
 }
-document.querySelectorAll('.car-track').forEach(t=>{ if(t.dataset.photos==='GALLERY') t._photos = GALLERY; });
-
 render();
 </script>
 </body>

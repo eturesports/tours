@@ -14,15 +14,15 @@ experiencias realizadas.
 
 | # | Sección | # | Sección |
 |---|---|---|---|
-| 01 | Portada | 14 | Football Program |
-| 02 | ETURE Spain Tours — qué hacemos | 15 | Possible Friendly Games |
-| 03 | Destinations | 16 | ETURE Soccer Fields |
-| 04 | Teams We Have Hosted | 17 | Training Facilities |
-| 05 | Previous Experiences | 18 | Accommodation |
-| 06–13 | Una sección por tour realizado | 19 | Cultural Program |
-| | (St. Louis City SC, ODP USYS, Creighton, | 20 | Services |
-| | Clemson, Mustang, Clarkson, Bayside, | 21 | Tour Formats |
-| | San Francisco Glens) | 22 | **Sample Itinerary** |
+| 01 | Portada | 14 | Sample Itinerary |
+| 02 | ETURE Spain Tours — qué hacemos | 15 | Football Program |
+| 03 | Destinations | 16 | Friendly Opponents |
+| 04 | Teams We Have Hosted | 17 | ETURE Soccer Fields |
+| 05 | Previous Experiences (collage) | 18 | Training Facilities |
+| 06–13 | Una sección por tour realizado | 19 | Accommodation |
+| | (St. Louis City SC, ODP USYS, Creighton, | 20 | Cultural Program |
+| | Clemson, Mustang, Clarkson, Bayside, | 21 | Services |
+| | San Francisco Glens) | 22 | Tour Formats |
 | | | 23 | How Pricing Works |
 | | | 24 | Payment & Cancellation |
 | | | 25 | How It Works |
@@ -30,15 +30,18 @@ experiencias realizadas.
 
 ## Cómo se edita
 
-Todo el contenido variable vive en cuatro arrays al principio del `<script>`:
+Todo el contenido variable vive en cinco arrays al principio del `<script>`:
 
 - **`TOURS`** — los tours realizados. Cada entrada genera **a la vez** su tarjeta
-  en *Teams We Have Hosted*, su sección de galería propia y su recuento en
-  *Destinations*. Añadir un tour = añadir un objeto al array y su carpeta en
-  `Tours/<slug>/`.
+  en *Teams We Have Hosted*, sus dos fotos del collage de *Previous Experiences*,
+  su sección de galería propia y su recuento en *Destinations*. Añadir un tour =
+  añadir un objeto al array y su carpeta en `Tours/<slug>/`.
 - **`DESTINATIONS`** — las ciudades. El número de tours de cada una se cuenta solo
   a partir de `TOURS`, no se escribe a mano.
 - **`HOTELS`** — los hoteles de muestra.
+- **`OPPONENTS`** — los clubes contra los que se han organizado amistosos. Solo
+  nombres: si algún día se tiene el set completo de escudos, se añade el campo y
+  se pintan todos a la vez, en lugar de mezclar unos con escudo y otros sin él.
 - **`ITINERARY`** — el itinerario modelo de 9 días. Los días marcados
   `tag:'Match Day'` se resaltan en rojo solos, y los contadores de la cabecera
   (entrenamientos, partidos) se cuentan desde las propias filas.
@@ -49,7 +52,7 @@ reordenar o añadir secciones no obliga a tocar el motor de navegación.
 
 ## Rendimiento
 
-Hay nueve galerías en la página. Cada carrusel monta sus imágenes solo cuando su
+Hay ocho galerías en la página. Cada carrusel monta sus imágenes solo cuando su
 sección entra en la ventana de navegación (`updateFar` → `ensureCarousel`), y las
 secciones lejanas se saltan con `content-visibility`. Sin eso, las ~150 fotos se
 cargarían de golpe al abrir.
