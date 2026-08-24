@@ -661,6 +661,37 @@ ul.dash li b { font-weight:600; color:var(--w); }
 .lt .logo-word, .logo-word.on-lt { color:var(--dk); }
 .lt .logo-word b, .logo-word.on-lt b { color:var(--red); }
 
+/* ---------- Sample itinerary ---------- */
+/* Nine rows share whatever height the slide has left, so they must be allowed
+   to shrink — plain 1fr floors each row at its content height and overflows. */
+.itin { display:grid; grid-auto-rows:minmax(0,1fr); gap:2px; flex:1; min-height:0; }
+.itin-head, .itin-row { display:grid; grid-template-columns:clamp(92px,9.5vw,140px) 1fr 1fr;
+  gap:clamp(10px,1.6vw,26px); align-items:center; padding:clamp(4px,.6vh,9px) clamp(8px,1vw,14px); }
+.itin-head { border-bottom:1px solid var(--line-d); align-items:end; }
+.itin-row { border-bottom:1px solid rgba(255,255,255,.07); transition:background .3s; overflow:hidden; }
+.itin-row:hover { background:rgba(255,255,255,.05); }
+.itin-row.is-match { background:rgba(155,26,26,.15); }
+.itin-row.is-match:hover { background:rgba(155,26,26,.22); }
+.itin-day { font-family:var(--disp); font-weight:900; line-height:1;
+  font-size:clamp(14px,1.45vw,20px); color:var(--w); }
+.itin-row.is-match .itin-day { color:var(--red-l); }
+.itin-tag { display:block; margin-top:.12rem; font-family:'Barlow Condensed'; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase; font-size:clamp(8.5px,.72vw,10px); color:var(--g2); }
+.itin-row.is-match .itin-tag { color:var(--red-l); }
+.itin-cell { margin:0; font-family:'Barlow',sans-serif; font-weight:300; line-height:1.4;
+  font-size:clamp(11.5px,1vw,14.5px); color:rgba(255,255,255,.86); }
+.itin-cell b { font-weight:600; color:var(--w); }
+/* Phones: the two-column day collapses, so each cell names its own half-day.
+   The pad scrolls here, so the grid has to take its content height instead of
+   being squeezed into the leftover flex space and clipping every row. */
+@media (max-width:860px){
+  .itin { grid-auto-rows:auto; flex:none; min-height:auto; }
+  .itin-head { display:none; }
+  .itin-row { grid-template-columns:1fr; gap:.3rem; padding:.8rem .2rem; overflow:visible; }
+  .itin-cell::before { content:attr(data-when) ' \00B7 '; font-family:'Barlow Condensed'; font-weight:700;
+    letter-spacing:.12em; text-transform:uppercase; font-size:9.5px; color:var(--red-l); }
+}
+
 /* ---------- Catalogue · narrow screens ---------- */
 @media (max-width:860px){
   .rail { display:none; }
@@ -1017,7 +1048,29 @@ ul.dash li b { font-weight:600; color:var(--w); }
   </div>
 </section>
 
-<!-- 21 · HOW PRICING WORKS -->
+<!-- 21 · SAMPLE ITINERARY -->
+<section class="slide" data-name="Sample Itinerary" style="background:var(--dk2);">
+  <div class="rail"><span>Sample Itinerary</span></div>
+  <div class="pad has-rail" style="height:100%;display:flex;flex-direction:column;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:clamp(16px,2.4vw,40px);flex-wrap:wrap;">
+      <div>
+        <p class="kick">Sample Itinerary</p>
+        <h2 class="h-display" style="font-size:clamp(24px,3.4vw,46px);margin-bottom:.15rem;">Nine Days <span class="rd">on Tour</span></h2>
+        <p class="body small" style="color:rgba(255,255,255,.7);max-width:720px;">Barcelona &rarr; Pe&ntilde;&iacute;scola &rarr; Valencia. A model route &mdash; yours is built around your dates, your squad and your objectives.</p>
+      </div>
+      <div id="itinStats" style="display:flex;gap:clamp(13px,2vw,32px);flex-wrap:wrap;margin-bottom:.35rem;"></div>
+    </div>
+    <div class="itin-head" style="margin-top:clamp(10px,1.6vh,20px);">
+      <span class="lbl" style="color:var(--g2);">Day</span>
+      <span class="lbl" style="color:var(--g2);">Morning</span>
+      <span class="lbl" style="color:var(--g2);">Afternoon / Evening</span>
+    </div>
+    <div class="itin" id="itinGrid"></div>
+    <p class="body small" style="margin-top:clamp(8px,1.3vh,15px);color:rgba(255,255,255,.5);font-style:italic;">Sample only &mdash; match days, training load and cultural visits are agreed with your staff before travel. LaLiga fixtures are subject to the league calendar.</p>
+  </div>
+</section>
+
+<!-- 22 · HOW PRICING WORKS -->
 <section class="slide lt" data-name="How Pricing Works" style="background:var(--ow);">
   <div class="rail lt"><span>Pricing</span></div>
   <div class="pad has-rail cat-2col" style="height:100%;display:grid;grid-template-columns:2fr 3fr;gap:clamp(24px,4vw,64px);align-items:center;">
@@ -1055,7 +1108,7 @@ ul.dash li b { font-weight:600; color:var(--w); }
   </div>
 </section>
 
-<!-- 22 · PAYMENT & CANCELLATION -->
+<!-- 23 · PAYMENT & CANCELLATION -->
 <section class="slide lt" data-name="Payment &amp; Cancellation" style="background:var(--ow);">
   <div class="rail lt"><span>Payment &amp; Cancellation</span></div>
   <div class="pad has-rail" style="height:100%;display:flex;flex-direction:column;justify-content:center;">
@@ -1085,7 +1138,7 @@ ul.dash li b { font-weight:600; color:var(--w); }
   </div>
 </section>
 
-<!-- 23 · HOW IT WORKS -->
+<!-- 24 · HOW IT WORKS -->
 <section class="slide" data-name="How It Works" style="background:var(--dk2);">
   <div class="rail"><span>How It Works</span></div>
   <div class="pad has-rail" style="height:100%;display:flex;flex-direction:column;justify-content:center;">
@@ -1102,7 +1155,7 @@ ul.dash li b { font-weight:600; color:var(--w); }
   </div>
 </section>
 
-<!-- 24 · CONTACT -->
+<!-- 25 · CONTACT -->
 <section class="slide" data-name="Contact" style="background:var(--dk2);">
   <div class="rail"><span>Contact</span></div>
   <div class="pad has-rail cat-2col" style="height:100%;display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px);align-items:center;">
@@ -1141,7 +1194,7 @@ ul.dash li b { font-weight:600; color:var(--w); }
 <button class="nav-btn" id="prevBtn" onclick="go(-1)" aria-label="Previous slide" style="left:clamp(10px,1.6vw,22px);">&#8249;</button>
 <button class="nav-btn" id="nextBtn" onclick="go(1)" aria-label="Next slide" style="right:clamp(10px,1.6vw,22px);">&#8250;</button>
 <div class="hud">
-  <span class="cnt" id="cnt">01 / 25</span>
+  <span class="cnt" id="cnt">01 / 26</span>
   <div class="scrub" id="scrub">
     <div class="scrub-track"></div><div class="scrub-fill" id="scrubFill"></div><div class="scrub-handle" id="scrubHandle"></div>
   </div>
@@ -1209,6 +1262,28 @@ const HOTELS = [
    notes:['Beachfront · pools &amp; spa','Apartments for larger groups'],
    site:'hotelesmediterraneo.com', url:'https://www.hotelesmediterraneo.com/hotel-aparthotel-spa-acuazul/',
    dir:'Hoteles/acuazul', imgs:['fachada-piscinas-exterior-hotel-acuazul-peniscola-vista-aerea.jpg','hotel-acuazul-primera-linea-playa-peniscola.jpg','junior-suite-salon-aparthotel-acuazul-peniscola.jpg','restaurante-acuazul-peniscola-familiar-vistas-playa.jpg','rooftop-bar-hotel-acuazul-peniscola.jpg','terraza-hotel-peniscola-vistas-castillo-mar-mediterraneo.jpg']},
+];
+/* Model 9-day route: Barcelona → Peñíscola → Valencia. Match days are picked
+   out in red, and the summary counts are read back off these rows. */
+const ITINERARY = [
+  {day:1, tag:'Arrival',   am:'Arrival in Barcelona &middot; <b>FC Barcelona stadium tour</b>',
+                           pm:'Mercat de la Boqueria &middot; La Sagrada Fam&iacute;lia &middot; transfer to Pe&ntilde;&iacute;scola'},
+  {day:2, tag:'Training',  am:'<b>Training session 1</b> &middot; Pe&ntilde;&iacute;scola castle visit',
+                           pm:'<b>Training session 2</b> &middot; beach time'},
+  {day:3, tag:'Match Day', am:'<b>Match 1</b>',
+                           pm:'Recovery session &middot; Pe&ntilde;&iacute;scola old town &middot; free time'},
+  {day:4, tag:'Training',  am:'<b>Training session 3</b> &middot; free time at the beach',
+                           pm:'Villarreal CF stadium tour &middot; transfer to Valencia'},
+  {day:5, tag:'Match Day', am:'Turia riverbed walk &middot; City of Arts and Sciences',
+                           pm:'<b>Match 2</b>'},
+  {day:6, tag:'Training',  am:'<b>Training session 4</b> &middot; Mestalla stadium visit',
+                           pm:'Valencia city centre &middot; free time'},
+  {day:7, tag:'Match Day', am:'<b>Match 3</b>',
+                           pm:'<b>LaLiga game</b> &mdash; Valencia CF, Levante UD or Villarreal CF'},
+  {day:8, tag:'Training',  am:'<b>Training session 5</b> &middot; Valencia beach walk',
+                           pm:'Albufera Natural Park &middot; boat trip on the lagoon'},
+  {day:9, tag:'Departure', am:'Logistics &amp; airport transfer',
+                           pm:'Departure flights back home'},
 ];
 const GALLERY = [
   'Fotos/53736300418_3ff6e692aa_6k.jpg','Fotos/53736301743_ff75b4fe35_6k.jpg',
@@ -1294,6 +1369,32 @@ const GALLERY = [
       <p class="dest-c">Your Route</p>
       <p class="body small" style="color:rgba(255,255,255,.62);">Any combination of the above, or a city we have not been to yet &mdash; routes are built to your dates.</p>
     </div>`;
+})();
+
+/* ── SAMPLE ITINERARY ───────────────────────────────── */
+(function(){
+  const g = document.getElementById('itinGrid'); if(!g) return;
+  g.innerHTML = ITINERARY.map(d => `
+    <div class="itin-row${d.tag==='Match Day'?' is-match':''}">
+      <div><span class="itin-day">DAY ${String(d.day).padStart(2,'0')}</span><span class="itin-tag">${d.tag}</span></div>
+      <p class="itin-cell" data-when="Morning">${d.am}</p>
+      <p class="itin-cell" data-when="Afternoon">${d.pm}</p>
+    </div>`).join('');
+
+  const s = document.getElementById('itinStats'); if(!s) return;
+  const all = ITINERARY.map(d => d.am + ' ' + d.pm).join(' ');
+  const occurrences = re => (all.match(re) || []).length;
+  const stats = [
+    ['09', 'Days'],
+    ['08', 'Nights'],
+    ['03', 'Cities'],
+    [String(occurrences(/Training session/g)).padStart(2,'0'), 'Trainings'],
+    [String(ITINERARY.filter(d => d.tag === 'Match Day').length).padStart(2,'0'), 'Matches'],
+    ['01', 'LaLiga'],
+  ];
+  s.innerHTML = stats.map(([n,l]) => `
+    <div><span class="bignum" style="font-size:clamp(24px,3vw,44px);">${n}</span>
+    <p class="bignum-lb" style="margin-top:.1rem;">${l}</p></div>`).join('');
 })();
 
 /* ── HOTEL GRID (crossfading panels) ────────────────── */

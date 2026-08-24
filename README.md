@@ -22,14 +22,15 @@ experiencias realizadas.
 | 06–13 | Una sección por tour realizado | 19 | Cultural Program |
 | | (St. Louis City SC, ODP USYS, Creighton, | 20 | Services |
 | | Clemson, Mustang, Clarkson, Bayside, | 21 | Tour Formats |
-| | San Francisco Glens) | 22 | How Pricing Works |
-| | | 23 | Payment & Cancellation |
-| | | 24 | How It Works |
-| | | 25 | Contact |
+| | San Francisco Glens) | 22 | **Sample Itinerary** |
+| | | 23 | How Pricing Works |
+| | | 24 | Payment & Cancellation |
+| | | 25 | How It Works |
+| | | 26 | Contact |
 
 ## Cómo se edita
 
-Todo el contenido variable vive en tres arrays al principio del `<script>`:
+Todo el contenido variable vive en cuatro arrays al principio del `<script>`:
 
 - **`TOURS`** — los tours realizados. Cada entrada genera **a la vez** su tarjeta
   en *Teams We Have Hosted*, su sección de galería propia y su recuento en
@@ -38,6 +39,9 @@ Todo el contenido variable vive en tres arrays al principio del `<script>`:
 - **`DESTINATIONS`** — las ciudades. El número de tours de cada una se cuenta solo
   a partir de `TOURS`, no se escribe a mano.
 - **`HOTELS`** — los hoteles de muestra.
+- **`ITINERARY`** — el itinerario modelo de 9 días. Los días marcados
+  `tag:'Match Day'` se resaltan en rojo solos, y los contadores de la cabecera
+  (entrenamientos, partidos) se cuentan desde las propias filas.
 
 El índice de secciones (`TOTAL`, `NAMES`, qué secciones son claras) se deriva del
 DOM leyendo el atributo `data-name` de cada `<section class="slide">`, así que
@@ -56,3 +60,4 @@ cargarían de golpe al abrir.
 - **Logos y fotos de portada de clientes** (`Clientes/`), **hoteles** (`Hoteles/`),
   **escudos** (`Escudos/`), **campos** (`assets/img/`), **vídeos**: repo `eturesports/PDA`.
 - **Datos de cada tour** (ciudades, fechas): página `eturesports.com/tours`.
+- **Itinerario modelo**: `itinerario_tour.xlsx`, traducido al inglés del deck.
