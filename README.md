@@ -10,6 +10,14 @@ contenido generalizado: donde el de PDA es una propuesta cerrada para un cliente
 —fechas, plantilla, precio—, este describe la oferta completa y el histórico de
 experiencias realizadas.
 
+## Propuestas por cliente
+
+Además del catálogo general, el repo aloja propuestas cerradas para un cliente
+concreto en su propia carpeta, reutilizando el material de la raíz:
+
+- [`st-marks-high-school/`](st-marks-high-school/) — St Mark's High School ·
+  Barcelona, Vinaròs y Valencia · 2.500 &euro; por jugador.
+
 ## Estructura del deck
 
 | # | Sección | # | Sección |
