@@ -21,7 +21,7 @@ Estructura y sistema de diseño copiados del deck de
 | Grupo | Por confirmar (jugadores + cuerpo técnico) |
 | Llegada | **Barcelona** (BCN) |
 | Ciudades | **3** — Barcelona · Vinaròs · Valencia |
-| Fútbol | 2 amistosos · nivel academia española |
+| Fútbol | 2 amistosos · nivel academia española (Vinaròs CF, CD Castellón, Torrent CF, Alboraya UD, Tavernes Blanques) |
 | Entrenamiento | ETURE FC (Vinaròs / Peñíscola) · cámaras VEO · material |
 | Cultura | Sagrada Família · Mercat de la Boqueria · Ciutat de les Arts i les Ciències · La Albufera · Castillo de Peñíscola (Papa Luna) · LaLiga · **abiertos a sugerencias** |
 | Precio | **2.500 € por jugador**, vuelos no incluidos |
@@ -40,14 +40,19 @@ Estructura y sistema de diseño copiados del deck de
 | 07 | Possible Friendly Games | | |
 | 08 | ETURE Soccer Fields / Training Facilities | | |
 
-## Pendiente de material
+## Material
 
-- **Escudo de St Mark's High School.** No hay logo del centro en el repo, así que
-  portada y contacto llevan de momento el nombre en tipografía del deck. En cuanto
-  llegue el archivo, sustituye ese bloque por un `<img>` como el del deck de Minerva.
-- **Escudos de Alboraya UD y Tabernes Blanques.** `../Escudos/` solo tiene Vinaròs CF,
-  Torrent CF y CD Castellón. Los dos clubes nuevos salen con un monograma tipográfico
-  (`.sm-mono`) del mismo tamaño que los escudos, para que la fila quede uniforme;
-  al añadir los PNG basta cambiar el `<span class="sm-mono">` por el `<img>`.
+Los escudos de los cinco rivales están en `../Escudos/`: Vinaròs CF, CD Castellón y
+Torrent CF ya estaban; Alboraya UD (`alboraya.png`, de Wikipedia) y Tavernes Blanques
+(`tavernes-blanques.svg`, el escudo municipal de Wikimedia Commons) se añadieron para
+esta propuesta.
+
+## Pendiente
+
+- **Escudo de St Mark's High School.** El sello del centro no está disponible en
+  ninguna fuente pública que se pueda descargar (la web del colegio devuelve 403),
+  así que portada y contacto llevan de momento el nombre en tipografía del deck.
+  Al añadir el archivo a `../Escudos/`, sustituye ese bloque por un `<img>` como el
+  del deck de Minerva.
 - **Fechas y tamaño del grupo** están como *To Be Confirmed* en Trip Overview: no venían
   definidos en el encargo.
