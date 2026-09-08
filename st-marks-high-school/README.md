@@ -45,18 +45,12 @@ Estructura y sistema de diseño copiados del deck de
 Los escudos de los cinco rivales están en `../Escudos/`: Vinaròs CF, CD Castellón y
 Torrent CF ya estaban; Alboraya UD (`alboraya.png`, de Wikipedia) y Tavernes Blanques
 (`tavernes-blanques.svg`, el escudo municipal de Wikimedia Commons) se añadieron para
-esta propuesta.
+esta propuesta. El sello de St Mark's está en `../Escudos/st-marks.png`, tal como lo
+publica el propio colegio (files.ecatholic.com); portada y contacto lo cargan en un
+`<img class="sm-seal">` que, si el archivo faltase, se retira solo y deja el nombre en
+tipografía.
 
 ## Pendiente
 
-- **Sello de St Mark's High School.** El deck ya tiene el hueco hecho: portada y
-  contacto cargan `../Escudos/st-marks.png` y, si el archivo está, sustituye solo al
-  nombre en tipografía; si no está, la imagen se retira sin dejar rastro y se ve el
-  wordmark. Así que **basta con copiar el archivo a `Escudos/st-marks.png`**, sin tocar
-  el HTML. Si el sello llega en otro formato, renombra el `src` en los dos `<img
-  class="sm-seal">`.
-  No se pudo descargar de ninguna fuente pública: `stmarkshs.net` responde 403 a
-  peticiones automáticas, Wikipedia no aloja el sello y archive.org está fuera de la
-  política de red del entorno.
 - **Fechas y tamaño del grupo** están como *To Be Confirmed* en Trip Overview: no venían
   definidos en el encargo.
