@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/st-marks-high-school/index.html",
+      "headers": { "Cache-Control": "public, max-age=0, must-revalidate" }
+    },
+    { "handle": "filesystem" }
+  ]
+}

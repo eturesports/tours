@@ -18,6 +18,9 @@ concreto en su propia carpeta, reutilizando el material de la raíz:
 - [`st-marks-high-school/`](st-marks-high-school/) — St Mark's High School ·
   Barcelona, Vinaròs y Valencia · 2.500 &euro; por jugador.
 
+En esta rama, el `vercel.json` de la raíz sirve esa propuesta en `/` para poder
+desplegarla como proyecto propio; el catálogo general sigue en `/index.html`.
+
 ## Estructura del deck
 
 | # | Sección | # | Sección |

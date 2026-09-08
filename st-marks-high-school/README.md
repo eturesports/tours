@@ -12,6 +12,33 @@ Estructura y sistema de diseño copiados del deck de
 [`eturesports/minervaacademyfc`](https://github.com/eturesports/minervaacademyfc)
 (paleta, tipografías, rail lateral, HUD, navegación, carruseles, las 15 secciones).
 
+## Despliegue en Vercel
+
+El `vercel.json` de la raíz del repo sirve esta propuesta en `/`:
+
+```json
+{ "routes": [
+    { "src": "/", "dest": "/st-marks-high-school/index.html", "headers": { ... } },
+    { "handle": "filesystem" } ] }
+```
+
+Se usa `routes` y no `rewrites` a propósito: los `rewrites` se resuelven contra el
+sistema de archivos y en la raíz ya existe el `index.html` del catálogo general, que
+ganaría. Con `routes` el orden es explícito — primero la regla, después
+`handle: filesystem` — y el resto del repo se sigue sirviendo con normalidad.
+
+Proyecto de Vercel: importar `eturesports/tours`, Production Branch
+`claude/st-marks-high-school-tour-w3tqsz`, preset *Other*, sin build command y con la
+raíz del repo como output. El deck queda tanto en `/` como en `/st-marks-high-school/`;
+el catálogo general sigue accesible en `/index.html`.
+
+Las rutas `../Fotos/…` funcionan igual desde los dos sitios: servido desde `/`, el
+navegador recorta el `..` sobrante y resuelve a `/Fotos/…`. Comprobado en navegador
+recorriendo las 15 secciones sin una sola petición fallida.
+
+> Ojo si algún día se fusiona esta rama a la principal: el `vercel.json` viajaría con
+> ella y la raíz dejaría de mostrar el catálogo general.
+
 ## Resumen del tour
 
 | | |
