@@ -660,6 +660,11 @@ ul.dash li b { font-weight:600; color:var(--w); }
 
 /* ---------- St Mark's · custom blocks ---------- */
 .sm-word { font-family:var(--disp); font-weight:900; text-transform:uppercase; line-height:.92; color:#fff; }
+/* Drop the school seal in at ../Escudos/st-marks.png and it replaces the wordmark
+   on both the cover and the contact slide; until then the wordmark stands in. */
+.sm-seal { display:none; width:auto; object-fit:contain; flex:none; }
+.sm-seal.on + .sm-name { display:none; }
+.sm-seal.on { display:block; }
 .sm-word .rd { color:var(--red-l); }
 .sm-opp { display:grid; grid-template-columns:repeat(5,1fr); gap:clamp(10px,1.4vw,20px); }
 .sm-opp .card { display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:clamp(10px,1.6vh,18px); text-align:center; }
@@ -713,7 +718,9 @@ ul.dash li b { font-weight:600; color:var(--w); }
     <div style="display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);margin-bottom:clamp(22px,3.4vh,42px);">
       <img src="../assets/img/eture-logo.png" alt="ETURE Sports" style="height:clamp(30px,3.6vw,44px);width:auto;object-fit:contain;">
       <span style="width:1px;height:clamp(74px,9vw,124px);background:rgba(255,255,255,.22);"></span>
-      <div style="flex:none;">
+      <img class="sm-seal" src="../Escudos/st-marks.png" alt="St Mark&rsquo;s High School"
+           style="height:clamp(60px,7.4vw,102px);" onload="this.classList.add('on')" onerror="this.remove()">
+      <div class="sm-name" style="flex:none;">
         <p class="lbl" style="color:var(--red-l);margin-bottom:.35rem;">High School Soccer</p>
         <p class="sm-word" style="font-size:clamp(19px,2.6vw,36px);">St Mark&rsquo;s<br><span class="rd">High School</span></p>
       </div>
@@ -1085,7 +1092,9 @@ ul.dash li b { font-weight:600; color:var(--w); }
       <p class="kick">ETURE Sports</p>
       <h2 class="h-display" style="font-size:clamp(30px,4.6vw,68px);">Let&rsquo;s Make<br><span class="rd">It Happen</span></h2>
       <div style="display:flex;align-items:center;gap:1.1rem;margin-top:1.2rem;">
-        <span style="width:3px;height:clamp(54px,6vw,80px);background:var(--red-l);flex:none;"></span>
+        <img class="sm-seal" src="../Escudos/st-marks.png" alt="St Mark&rsquo;s High School"
+             style="height:clamp(54px,6vw,80px);" onload="this.classList.add('on')" onerror="this.remove()">
+        <span class="sm-name" style="width:3px;height:clamp(54px,6vw,80px);background:var(--red-l);flex:none;"></span>
         <div>
           <span class="lbl" style="color:var(--g2);">School</span>
           <p class="h-mid" style="color:var(--w);font-size:clamp(16px,1.7vw,22px);">St Mark&rsquo;s High School</p>

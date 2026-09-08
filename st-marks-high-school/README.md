@@ -49,10 +49,14 @@ esta propuesta.
 
 ## Pendiente
 
-- **Escudo de St Mark's High School.** El sello del centro no está disponible en
-  ninguna fuente pública que se pueda descargar (la web del colegio devuelve 403),
-  así que portada y contacto llevan de momento el nombre en tipografía del deck.
-  Al añadir el archivo a `../Escudos/`, sustituye ese bloque por un `<img>` como el
-  del deck de Minerva.
+- **Sello de St Mark's High School.** El deck ya tiene el hueco hecho: portada y
+  contacto cargan `../Escudos/st-marks.png` y, si el archivo está, sustituye solo al
+  nombre en tipografía; si no está, la imagen se retira sin dejar rastro y se ve el
+  wordmark. Así que **basta con copiar el archivo a `Escudos/st-marks.png`**, sin tocar
+  el HTML. Si el sello llega en otro formato, renombra el `src` en los dos `<img
+  class="sm-seal">`.
+  No se pudo descargar de ninguna fuente pública: `stmarkshs.net` responde 403 a
+  peticiones automáticas, Wikipedia no aloja el sello y archive.org está fuera de la
+  política de red del entorno.
 - **Fechas y tamaño del grupo** están como *To Be Confirmed* en Trip Overview: no venían
   definidos en el encargo.
